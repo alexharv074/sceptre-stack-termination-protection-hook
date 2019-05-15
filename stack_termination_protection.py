@@ -39,7 +39,7 @@ class StackTerminationProtection(Hook):
         enable_termination_protection = False
         if argument == 'enabled':
             enable_termination_protection = True
-        connection_manager = self.stack.template.connection_manager
+        connection_manager = self.stack.connection_manager
         try:
             response = connection_manager.call(
                 service="cloudformation",
