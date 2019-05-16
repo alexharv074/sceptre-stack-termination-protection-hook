@@ -11,7 +11,7 @@ install_requirements = [
 
 setup(
     name='sceptre-stack-termination-protection-hook',
-    version="1.0.0",
+    version="1.0.1",
     description="A Sceptre hook to enable and disable cloudformation"
                 "stack termination protection",
     py_modules=['stack_termination_protection'],
