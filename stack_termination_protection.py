@@ -41,6 +41,17 @@ class StackTerminationProtection(Hook):
             enable_termination_protection = True
         connection_manager = self.stack.connection_manager
         try:
+            connection_manager.call(
+                service="cloudformation",
+                command="describe_stacks",
+                kwargs={"StackName": self.stack.external_name}
+            )
+        except ClientError:
+            self.logger.info(
+                "%s - stack not found. Skipping termination protection",
+                self.stack.name)
+            return
+        try:
             response = connection_manager.call(
                 service="cloudformation",
                 command="update_termination_protection",
